@@ -25,10 +25,10 @@ async function translateText(inputLang: string, outputLang: string, str: string)
 </script>
 
 <template>
-  <main class="h-full grid">
+  <main class="h-full max-md:h-screen overflow-y-scroll grid">
     <h1 class="text-white font-bold text-center w-screen flex justify-center items-center">AJS Translate</h1>
 
- <section class="md:flex h-fit justify-center gap-x-4 max-md:grid max-md:content-center items-center">
+ <section class="md:flex h-fit justify-center gap-x-4 max-md:grid max-md:gap-y-3 max-md:content-center items-center">
  <div class="relative">
    <TranslateBox v-model:lang="translateLang" :editable="false" v-model="query"></TranslateBox>
    <button class="top-74 right-4 cursor-pointer bg-[#3762e4] py-2.5 px-5 rounded-lg text-[#d7def8] border-[0.5px] border-[#5984ec] font-bold absolute" @click="() => {
