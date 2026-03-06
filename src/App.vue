@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, type Ref } from 'vue';
+import {  ref, type Ref } from 'vue';
 import TranslateBox from './components/TranslateBox.vue';
 const translateLang = ref("en")
 const targetLang = ref("ar")
@@ -8,10 +8,10 @@ const query = ref("")
 
 const result = ref("")
 
-async function translateText(input: string, output: string, data: string) {
-  const translation = await fetch(`https://api.mymemory.translated.net/get?q=${data.split(" ").join("_")}&langpair=${input}|${output}`).then(d => d.json())
+async function translateText(inputLang: string, outputLang: string, str: string) {
+  const translation = await fetch(`https://api.mymemory.translated.net/get?q=${str.split(" ").join("_")}&langpair=${inputLang}|${outputLang}`).then(d => d.json())
 
-  if (data === "") {
+  if (str === "") {
     result.value = ""
   }
   else {
@@ -22,14 +22,6 @@ async function translateText(input: string, output: string, data: string) {
 
 }
 
-
-
-
-
-
-
-
-
 </script>
 
 <template>
@@ -37,11 +29,14 @@ async function translateText(input: string, output: string, data: string) {
     <h1 class="text-white font-bold text-center w-screen flex justify-center items-center">AJS Translate</h1>
 
  <section class="md:flex h-fit justify-center gap-x-4 max-md:grid max-md:content-center items-center">
-  <TranslateBox :editable="false" v-model="query"></TranslateBox>
-  <TranslateBox :editable="true" v-model="result"></TranslateBox>
-  <button class="bg-blue-900" @click="() => {
+ <div class="relative">
+   <TranslateBox v-model:lang="translateLang" :editable="false" v-model="query"></TranslateBox>
+   <button class="top-74 right-4 cursor-pointer bg-[#3762e4] py-2.5 px-5 rounded-lg text-[#d7def8] border-[0.5px] border-[#5984ec] font-bold absolute" @click="() => {
     translateText(translateLang, targetLang, query)
-    }">check</button>
+    }">Translate</button>
+ </div>
+  <TranslateBox v-model:lang="targetLang" :editable="true" v-model="result"></TranslateBox>
+
  </section>
 
  </main>
