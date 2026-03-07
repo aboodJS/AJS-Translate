@@ -3,15 +3,22 @@ import {  ref, type Ref } from 'vue';
 import TranslateBox from './components/TranslateBox.vue';
 const translateLang = ref("en")
 const targetLang = ref("ar")
+const switchedLang = ref("")
 
 
 const query = ref("")
 
 const result = ref("")
 
-async function translateText(inputLang: string, outputLang: string, str: string) {
-  const translation = await fetch(`https://api.mymemory.translated.net/get?q=${str.split(" ").join("_")}&langpair=${inputLang}|${outputLang}`).then(d => d.json())
+function switchLangs() {
+  switchedLang.value = translateLang.value
+  translateLang.value = targetLang.value
+  targetLang.value = switchedLang.value
+}
 
+async function translateText(inputLang: string, outputLang: string, str: string) {
+  const translation = await fetch(`https://api.mymemory.translated.net/get?q=${str.split(" ").join("%20")}&langpair=${inputLang}|${outputLang}`).then(d => d.json())
+  console.log(str.split(" ").join("%20"))
 
 
   if (str === "") {
@@ -30,7 +37,7 @@ async function translateText(inputLang: string, outputLang: string, str: string)
 <template>
   <main class="h-screen  grid">
     <h1 class="text-white font-bold text-center w-screen flex justify-center items-center">AJS Translate</h1>
-
+<button class="self-center justify-self-center cursor-pointer bg-[#3762e4] py-2.5 px-5 rounded-lg text-[#d7def8] border-[0.5px] border-[#5984ec] font-bold" @click="switchLangs">switch</button>
  <section class="md:flex h-fit justify-center gap-x-4 max-md:grid max-md:gap-y-3 max-md:content-center items-center">
  <div class="relative">
    <TranslateBox v-model:lang="translateLang" :editable="false" v-model="query"></TranslateBox>
