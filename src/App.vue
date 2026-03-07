@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import {  ref, type Ref } from 'vue';
 import TranslateBox from './components/TranslateBox.vue';
-const translateLang = ref("en")
-const targetLang = ref("ar")
+import { Translator, Credentials } from '@translated/lara';
+const translateLang = ref("en-US")
+const targetLang = ref("ar-SA")
+
+const creds = new Credentials(import.meta.env.VITE_API_ID, import.meta.env.VITE_API_KEY)
+const lara = new Translator(creds)
 
 const query = ref("")
 
 const result = ref("")
 
 async function translateText(inputLang: string, outputLang: string, str: string) {
-  const translation = await fetch(`https://api.mymemory.translated.net/get?q=${str.split(" ").join("_")}&langpair=${inputLang}|${outputLang}`).then(d => d.json())
+  const translation = await lara.translate(str, inputLang, outputLang)
 
   if (str === "") {
     result.value = ""
   }
   else {
-    result.value = translation.responseData.translatedText
+    result.value = translation.translation
   }
 
 
