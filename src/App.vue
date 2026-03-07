@@ -25,7 +25,7 @@ async function translateText(inputLang: string, outputLang: string, str: string)
 </script>
 
 <template>
-  <main class="h-full max-md:h-screen overflow-y-scroll grid">
+  <main class="h-screen  grid">
     <h1 class="text-white font-bold text-center w-screen flex justify-center items-center">AJS Translate</h1>
 
  <section class="md:flex h-fit justify-center gap-x-4 max-md:grid max-md:gap-y-3 max-md:content-center items-center">
