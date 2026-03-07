@@ -18,7 +18,6 @@ function switchLangs() {
 
 async function translateText(inputLang: string, outputLang: string, str: string) {
   const translation = await fetch(`https://api.mymemory.translated.net/get?q=${str.split(" ").join("%20")}&langpair=${inputLang}|${outputLang}`).then(d => d.json())
-  console.log(str.split(" ").join("%20"))
 
 
   if (str === "") {
