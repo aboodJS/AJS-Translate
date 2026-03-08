@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
-import { useTemplateRef } from "vue";
+import { onMounted, useTemplateRef, ref } from "vue";
 const props = defineProps({
   editable: Boolean,
   defaultLang: String,
@@ -21,6 +21,10 @@ function copyText(): void {
 
   console.log(textArea.value?.value)
 }
+
+
+
+
 
 
 
