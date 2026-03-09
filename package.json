@@ -14,7 +14,6 @@
     "lint:eslint": "eslint . --fix --cache"
   },
   "dependencies": {
-    "@mediapipe/tasks-text": "^0.10.32",
     "@tailwindcss/vite": "^4.2.1",
     "@translated/lara": "^1.8.0",
     "dotenv": "^17.3.1",
