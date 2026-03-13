@@ -35,6 +35,8 @@ function copyText(): void {
     <option value="de">german</option>
     <option value="fr">french</option>
     <option value="fi">finnish</option>
+    <option value="zh">chinese</option>
+    <option value="ko">korean</option>
   </select>
     <textarea v-model="text" ref="textBox" :disabled="props.editable"   class="indent-2 max-md:w-[95vw] text-white opacity-95 h-64 outline-0 w-lg " name="" id="" maxlength="500"></textarea>
       <button @click="() => {
